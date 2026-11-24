@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Warum ihr mir das Geld leihen solltet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: ehrlich, ruhig, gut vorbereitet – ein Sohn/eine Tochter, die einen Plan vorlegt
+   IDEA: ein kleiner Geschäftsplan wie aus der Bank – Folie für Folie
+   PICTURE: gezeichnetes MacBook, kaputte Tastatur, Geldbalken und Rückzahlungstreppe
+   COLOUR: Graphit + Weiß, Koralle für „kaputt/Problem“, Blau für „Lösung“
+   TYPE / LAYOUT: Sora für Titel, Inter für Text; eine Folie pro Bildschirm, seitlich scrollen */
+:root{color-scheme:light dark;
+ --bg:light-dark(#f4f4f2,#121316);--card:light-dark(#ffffff,#1c1e22);--ink:light-dark(#17181b,#f1f1ef);
+ --mute:light-dark(#5c5f66,#a4a7ad);--line:light-dark(#e2e2de,#2c2f35);
+ --gr:light-dark(#26282d,#2a2d33);--al:light-dark(#c9ccd1,#8d9198);
+ --red:#ff5a36;--blue:light-dark(#0a62e0,#4c93ff);--ok:light-dark(#0f8a5f,#3fcf95)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 Inter,system-ui,sans-serif;overflow:hidden}
+h1,h2{font-family:Sora,Inter,sans-serif;font-weight:800;line-height:1.05;text-wrap:balance;margin:0 0 .4em}
+h1{font-size:clamp(34px,5.4vw,60px)}h2{font-size:clamp(28px,3.8vw,46px)}
+h3{font:600 19px/1.3 Sora,Inter,sans-serif;margin:0 0 4px}
+p{margin:0 0 .8em;max-width:62ch}.mute{color:var(--mute)}
+.deck{display:flex;height:100vh;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none}
+.deck::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;height:100vh;scroll-snap-align:start;overflow-y:auto;padding:clamp(28px,5vw,72px) max(6vw,18px) 110px;display:grid;align-content:center}
+.wrap{max-width:1180px;width:100%;margin:0 auto}
+.two{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center}
+.kick{font-weight:600;color:var(--blue);margin-bottom:10px}
+.kick.r{color:var(--red)}
+.dark{background:var(--gr);color:#f3f3f1}.dark .mute{color:#b4b7bd}.dark .kick{color:#7fb2ff}
+svg.pic{width:100%;height:auto;display:block}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;margin-top:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+.card p{font-size:16px;margin:0;color:var(--mute)}
+.ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--blue) 14%,transparent);margin-bottom:12px}
+.ico svg{width:24px;height:24px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.big{font:800 clamp(44px,7vw,88px)/1 Sora,sans-serif;white-space:nowrap}
+.bar{display:flex;height:72px;border-radius:16px;overflow:hidden;margin:22px 0 12px;font-weight:600}
+.bar div{display:flex;align-items:center;padding:0 16px;color:#fff;white-space:nowrap}
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:15px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+table{width:100%;border-collapse:collapse;font-size:16px;background:var(--card);border-radius:16px;overflow:hidden}
+th,td{padding:11px 14px;border-bottom:1px solid var(--line);text-align:left}
+th{font-size:14px;color:var(--mute);font-weight:600}
+td.n,th.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:0}
+.prog{height:8px;background:var(--line);border-radius:5px;overflow:hidden;min-width:60px}.prog b{display:block;height:100%;background:var(--ok)}
+.check{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:12px}
+.check li{padding-left:34px;position:relative}
+.check li::before{content:"";position:absolute;left:0;top:3px;width:22px;height:22px;border-radius:50%;background:var(--ok) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12l4 4 8-8'/%3E%3C/svg%3E") center/14px no-repeat}
+.sign{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:28px;margin-top:34px}
+.sign div{border-top:2px solid currentColor;padding-top:8px;font-size:14px;opacity:.8}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;gap:14px;padding:14px;pointer-events:none}
+nav>*{pointer-events:auto}
+nav button{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:20px;cursor:pointer}
+nav button:focus-visible,.dots button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.dots{display:flex;gap:6px;background:var(--card);border:1px solid var(--line);padding:8px 12px;border-radius:30px}
+.dots button{width:10px;height:10px;border-radius:50%;border:0;padding:0;background:var(--line);cursor:pointer}
+.dots button.on{background:var(--blue);width:26px;border-radius:6px}
+.count{font-size:14px;color:var(--mute);min-width:44px;text-align:center}
+@media(max-width:760px){.two{grid-template-columns:minmax(0,1fr)}.slide{align-content:start}.bar{height:60px;font-size:14px}.bar div{padding:0 10px}.hide-s{display:none}}
+@media(prefers-reduced-motion:no-preference){.deck{scroll-behavior:smooth}.slide .wrap{animation:in .6s ease both}}
+@keyframes in{from{opacity:0;transform:translateY(14px)}}
+</style>
+</head>
+<body>
+<main class="deck" id="deck">
+
+<!-- 1 Titel -->
+<section class="slide dark" aria-label="Titel">
+ <div class="wrap two">
+  <div>
+   <div class="kick">Für Mama &amp; Papa</div>
+   <h1>Warum ihr mir das Geld für einen Laptop leihen solltet</h1>
+   <p class="mute">5 gute Gründe – und ein fester Plan, wie ihr jeden Euro zurückbekommt.</p>
+   <p style="margin-top:22px;font-weight:600">Mein Wunsch: 250 € geliehen, zurück bis April 2027.</p>
+  </div>
+  <svg class="pic" viewBox="0 0 520 360" role="img" aria-label="Zeichnung eines MacBook Air">
+   <defs><linearGradient id="scr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b7bff"/><stop offset=".55" stop-color="#7a4dff"/><stop offset="1" stop-color="#ff5a36"/></linearGradient>
+   <linearGradient id="alu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e4e6ea"/><stop offset="1" stop-color="#9da1a8"/></linearGradient></defs>
+   <ellipse cx="260" cy="330" rx="230" ry="16" fill="#000" opacity=".35"/>
+   <rect x="80" y="30" width="360" height="236" rx="16" fill="#0d0e10" stroke="#5b5f66" stroke-width="3"/>
+   <rect x="94" y="44" width="332" height="208" rx="6" fill="url(#scr)"/>
+   <circle cx="260" cy="37" r="2.5" fill="#444"/>
+   <rect x="130" y="80" width="150" height="14" rx="7" fill="#fff" opacity=".9"/>
+   <rect x="130" y="104" width="220" height="9" rx="4.5" fill="#fff" opacity=".55"/>
+   <rect x="130" y="120" width="190" height="9" rx="4.5" fill="#fff" opacity=".55"/>
+   <rect x="130" y="150" width="110" height="64" rx="10" fill="#fff" opacity=".22"/>
+   <rect x="252" y="150" width="110" height="64" rx="10" fill="#fff" opacity=".22"/>
+   <path d="M30 268h460l-26 46H56z" fill="url(#alu)"/>
+   <rect x="30" y="266" width="460" height="6" rx="3" fill="#f3f4f6"/>
+   <rect x="215" y="268" width="90" height="8" rx="4" fill="#8a8e95"/>
+   <path d="M56 314h408" stroke="#6f737a" stroke-width="2"/>
+  </svg>
+ </div>
+</section>
+
+<!-- 2 Problem -->
+<section class="slide" aria-label="Das Problem">
+ <div class="wrap two">
+  <div>
+   <div class="kick r">Grund 1 von 5 · Es ist wirklich nötig</div>
+   <h2>Mein alter Laptop ist kaputt – so kann ich nicht arbeiten</h2>
+   <p>Die Tasten 1, 6, 7 und P reagieren nicht oder nur mit viel Druck, und der Akku hält höchstens noch eineinhalb Stunden. Jede E-Mail, jede Rechnung und jedes Dokument kostet doppelt so viel Zeit – und Tippfehler wirken bei Kunden unprofessionell.</p>
+   <ul class="check" style="--ok:var(--red)">
+    <li>Defekte Tasten 1, 6, 7 und P – Texte, Preise und Telefonnummern schreiben ist kaum möglich</li>
+    <li>Akku hält maximal 1,5 Stunden – ohne Steckdose kann ich nicht arbeiten</li>
+    <li>Reparatur lohnt sich beim alten Gerät nicht mehr</li>
+    <li>Eine externe Tastatur löst das Problem unterwegs nicht</li>
+   </ul>
+  </div>
+  <svg class="pic" viewBox="0 0 500 300" role="img" aria-label="Tastatur mit rot markierten, defekten Tasten">
+   <rect x="10" y="20" width="480" height="260" rx="22" fill="var(--gr)"/>
+   <g id="keys"></g>
+   <g font-family="Inter,sans-serif" font-size="15" font-weight="600" fill="#fff">
+    <rect x="300" y="236" width="170" height="30" rx="15" fill="#ff5a36"/>
+    <text x="385" y="256" text-anchor="middle">defekt: 1 · 6 · 7 · P</text>
+    <rect x="26" y="238" width="70" height="28" rx="6" fill="none" stroke="#ff5a36" stroke-width="3"/>
+    <rect x="96" y="246" width="5" height="12" rx="2" fill="#ff5a36"/>
+    <rect x="30" y="242" width="12" height="20" rx="3" fill="#ff5a36"/>
+    <text x="68" y="257" text-anchor="middle" font-size="13">1,5 h</text>
+   </g>
+  </svg>
+ </div>
+</section>
+
+<!-- 3 Selbstständigkeit -->
+<section class="slide" aria-label="Warum ich ihn brauche">
+ <div class="wrap">
+  <div class="kick">Grund 2 von 5 · Es ist eine Investition, kein Spielzeug</div>
+  <h2>Ich mache mich selbstständig – der Laptop ist mein Arbeitsgerät</h2>
+  <p class="mute">Ohne funktionierenden Laptop kann ich nicht starten. Mit ihm kann ich sofort loslegen und mein eigenes Geld verdienen.</p>
+  <div class="cards">
+   <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg></div><h3>Kunden betreuen</h3><p>E-Mails, Angebote und Absprachen schnell und fehlerfrei schreiben.</p></div>
+   <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M10 12h5M10 16h5"/></svg></div><h3>Rechnungen &amp; Ordnung</h3><p>Rechnungen schreiben, Einnahmen festhalten, alles fürs Finanzamt sauber ablegen.</p></div>
+   <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg></div><h3>Lernen &amp; Recherche</h3><p>Weiterbilden, Ideen recherchieren und Aufträge vorbereiten.</p></div>
+   <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div><h3>Nebeneinkommen sichern</h3><p>Prolific-Umfragen laufen am Laptop – das ist mein Geld für die Rückzahlung.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 4 Warum MacBook -->
+<section class="slide" aria-label="Warum das MacBook Air M1">
+ <div class="wrap two">
+  <div>
+   <div class="kick">Grund 3 von 5 · Ich habe vernünftig gewählt</div>
+   <h2>Kein Luxus: ein MacBook Air M1 für rund 400 €</h2>
+   <p>Ich habe mich bewusst für ein günstiges, gebrauchtes oder generalüberholtes Modell entschieden – kein neues Luxusgerät, sondern das beste Preis-Leistungs-Verhältnis.</p>
+  </div>
+  <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));margin:0">
+   <div class="card"><h3>Langer Akku</h3><p>Laut Apple bis zu 18 Stunden – statt 1,5 Stunden wie jetzt. Ein ganzer Arbeitstag ohne Steckdose.</p></div>
+   <div class="card"><h3>Robust &amp; leise</h3><p>Kein Lüfter, wenig Verschleiß, solides Aluminiumgehäuse.</p></div>
+   <div class="card"><h3>Hält lange</h3><p>Schneller Apple-Chip, der für Büro, Kundenarbeit und Umfragen locker reicht.</p></div>
+   <div class="card"><h3>Behält seinen Wert</h3><p>MacBooks lassen sich gut weiterverkaufen – für euch eine echte Sicherheit.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 5 Finanzierung -->
+<section class="slide" aria-label="Finanzierung">
+ <div class="wrap">
+  <div class="kick">Grund 4 von 5 · Ich zahle selbst mit</div>
+  <h2>Ich bringe 150 € selbst mit – mir fehlen nur 250 €</h2>
+  <div class="bar" role="img" aria-label="400 Euro gesamt: 150 Euro Eigenanteil, 250 Euro Leihe">
+   <div style="width:37.5%;background:var(--ok)">150 € von mir</div>
+   <div style="width:62.5%;background:var(--blue)">250 € geliehen von euch</div>
+  </div>
+  <div class="legend"><span><i style="background:var(--ok)"></i>Eigenanteil 37,5 %</span><span><i style="background:var(--blue)"></i>Leihe 62,5 %</span><span class="mute">Gesamtbudget: 400 €</span></div>
+  <div class="cards">
+   <div class="card"><div class="big">400 €</div><p>Preis für das MacBook Air M1</p></div>
+   <div class="card"><div class="big" style="color:var(--ok)">150 €</div><p>habe ich schon selbst gespart</p></div>
+   <div class="card"><div class="big" style="color:var(--blue)">250 €</div><p>möchte ich mir von euch leihen – nicht geschenkt</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 6 Einkommen -->
+<section class="slide" aria-label="Mein Einkommen">
+ <div class="wrap two">
+  <div>
+   <div class="kick">Grund 5 von 5 · Ich kann es sicher zurückzahlen</div>
+   <h2>Mit Prolific verdiene ich schon jetzt fast 100 € im Monat</h2>
+   <p>Prolific ist eine Plattform, auf der Universitäten und Forscher für die Teilnahme an Online-Umfragen bezahlen. Das Geld kommt regelmäßig und ich kann es euch jederzeit zeigen.</p>
+   <p><strong>Davon gehen 50 € pro Monat fest an euch.</strong> Die andere Hälfte ist mein Puffer, falls ein Monat schwächer ausfällt.</p>
+  </div>
+  <svg class="pic" viewBox="0 0 460 320" role="img" aria-label="Aufteilung von 100 Euro: 50 Euro Rate, 50 Euro Puffer">
+   <circle cx="160" cy="160" r="118" fill="none" stroke="var(--line)" stroke-width="44"/>
+   <circle cx="160" cy="160" r="118" fill="none" stroke="var(--blue)" stroke-width="44" stroke-dasharray="370.7 741.4" transform="rotate(-90 160 160)"/>
+   <circle cx="160" cy="160" r="118" fill="none" stroke="var(--ok)" stroke-width="44" stroke-dasharray="0 370.7 360 741.4" transform="rotate(-90 160 160)"/>
+   <text x="160" y="155" text-anchor="middle" font-family="Sora,sans-serif" font-weight="800" font-size="40" fill="var(--ink)">~100 €</text>
+   <text x="160" y="182" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" fill="var(--mute)">pro Monat</text>
+   <g font-family="Inter,sans-serif" font-size="16">
+    <rect x="318" y="118" width="14" height="14" rx="3" fill="var(--blue)"/><text x="340" y="130" fill="var(--ink)" font-weight="600">50 € Rate</text>
+    <rect x="318" y="178" width="14" height="14" rx="3" fill="var(--ok)"/><text x="340" y="190" fill="var(--ink)" font-weight="600">50 € Puffer</text>
+   </g>
+  </svg>
+ </div>
+</section>
+
+<!-- 7 Rückzahlungsplan -->
+<section class="slide" aria-label="Rückzahlungsplan">
+ <div class="wrap two" style="align-items:start">
+  <div>
+   <div class="kick">So bekommt ihr euer Geld zurück</div>
+   <h2>5 Raten à 50 € – in 5 Monaten ist alles zurück</h2>
+   <p>Jeweils zum 1. des Monats, per Überweisung oder bar. Wenn ich mehr verdiene, zahle ich schneller zurück – nie langsamer.</p>
+   <svg class="pic hide-s" viewBox="0 0 420 170" role="img" aria-label="Restschuld sinkt von 250 auf 0 Euro">
+    <g id="steps"></g>
+   </svg>
+  </div>
+  <table>
+   <thead><tr><th>Datum</th><th class="n">Rate</th><th class="n">Rest</th><th>Fortschritt</th></tr></thead>
+   <tbody id="plan"></tbody>
+  </table>
+ </div>
+</section>
+
+<!-- 8 Sicherheit -->
+<section class="slide" aria-label="Meine Zusagen">
+ <div class="wrap two">
+  <div>
+   <div class="kick">Und falls ihr euch Sorgen macht</div>
+   <h2>Warum ihr dabei kein Risiko eingeht</h2>
+   <ul class="check">
+    <li>Wir halten die Vereinbarung schriftlich fest und unterschreiben beide.</li>
+    <li>Ich zeige euch jeden Monat meine Prolific-Auszahlungen.</li>
+    <li>Die Rate kommt zuerst – bevor ich Geld für anderes ausgebe.</li>
+    <li>Bis zur letzten Rate gilt der Laptop als Pfand. Falls etwas schiefgeht, kann er verkauft werden.</li>
+    <li>Fällt eine Rate aus, rede ich sofort mit euch und hole sie im Folgemonat nach.</li>
+   </ul>
+  </div>
+  <div class="card" style="padding:28px">
+   <h3>Was passiert im schlechtesten Fall?</h3>
+   <p style="margin-top:8px">Ein MacBook Air M1 lässt sich gebraucht gut wieder verkaufen. Selbst wenn ich ganz ausfallen würde, ist ein großer Teil der 250 € dadurch abgesichert – und ich habe zusätzlich meine 50 € Puffer im Monat.</p>
+   <p style="margin-top:14px;color:var(--ink);font-weight:600">Euer Risiko ist klein. Mein Nutzen ist groß.</p>
+  </div>
+ </div>
+</section>
+
+<!-- 9 Abschluss -->
+<section class="slide dark" aria-label="Abschluss">
+ <div class="wrap">
+  <div class="kick">Darum solltet ihr mir das Geld leihen</div>
+  <h1>Leiht ihr mir 250 €?</h1>
+  <p class="mute">Der Laptop ist nötig, er bringt mir Einkommen, ich habe günstig gewählt, zahle selbst mit – und ihr bekommt alles zurück.</p>
+  <div class="cards" style="margin-top:10px">
+   <div class="card" style="background:#2f3239;border-color:#3b3f46"><h3 style="color:#fff">Der Grund</h3><p style="color:#c3c6cc">Alter Laptop defekt, Selbstständigkeit braucht ein zuverlässiges Gerät.</p></div>
+   <div class="card" style="background:#2f3239;border-color:#3b3f46"><h3 style="color:#fff">Mein Beitrag</h3><p style="color:#c3c6cc">150 € von 400 € bringe ich selbst mit.</p></div>
+   <div class="card" style="background:#2f3239;border-color:#3b3f46"><h3 style="color:#fff">Der Plan</h3><p style="color:#c3c6cc">50 € im Monat aus Prolific – fertig im April 2027.</p></div>
+  </div>
+  <div class="sign">
+   <div>Unterschrift Mama</div><div>Unterschrift Papa</div><div>Meine Unterschrift · Datum</div>
+  </div>
+ </div>
+</section>
+
+</main>
+
+<nav aria-label="Folien">
+ <button id="prev" aria-label="Vorherige Folie">‹</button>
+ <div class="dots" id="dots"></div>
+ <span class="count" id="count">1/9</span>
+ <button id="next" aria-label="Nächste Folie">›</button>
+</nav>
+
+<script>
+{
+ const deck=document.getElementById('deck');
+ const slides=[...deck.querySelectorAll('.slide')];
+ const dots=document.getElementById('dots');
+ const count=document.getElementById('count');
+
+ // Tastatur mit defekten Tasten
+ const rows=[['1','2','3','4','5','6','7','8','9','0','ß'],['Q','W','E','R','T','Z','U','I','O','P','Ü'],['A','S','D','F','G','H','J','K','L','Ö','Ä'],['<','Y','X','C','V','B','N','M',',','.','-']];
+ const broken=new Set(['1','6','7','P']);
+ let k='';
+ rows.forEach((row,r)=>row.forEach((ch,c)=>{
+  const x=34+c*40.5,y=44+r*46,bad=broken.has(ch);
+  const t=ch.replace('&','&amp;').replace('<','&lt;');
+  k+=`<rect x="${x}" y="${y+3}" width="34" height="36" rx="7" fill="#000" opacity=".35"/>`+
+     `<rect x="${x}" y="${y}" width="34" height="36" rx="7" fill="${bad?'#ff5a36':'#3a3d44'}"/>`+
+     `<text x="${x+17}" y="${y+24}" text-anchor="middle" font-family="Inter,sans-serif" font-size="${bad?17:14}" font-weight="${bad?800:600}" fill="${bad?'#fff':'#c9ccd1'}">${t}</text>`+
+     (bad?`<path d="M${x+26} ${y+5}l5 5M${x+31} ${y+5}l-5 5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>`:'');
+ }));
+ k+=`<rect x="115" y="232" width="170" height="34" rx="7" fill="#3a3d44"/>`;
+ document.getElementById('keys').innerHTML=k;
+
+ // Rückzahlungsplan
+ const months=['01.12.2026','01.01.2027','01.02.2027','01.03.2027','01.04.2027'];
+ let rest=250;
+ document.getElementById('plan').innerHTML=months.map((m,i)=>{
+  rest-=50;const pct=(250-rest)/250*100;
+  return `<tr><td>${m}</td><td class="n">50 €</td><td class="n">${rest} €</td><td><div class="prog"><b style="width:${pct}%"></b></div></td></tr>`;
+ }).join('')+`<tr><td><strong>Gesamt</strong></td><td class="n"><strong>250 €</strong></td><td class="n"><strong>0 €</strong></td><td></td></tr>`;
+ let s='';
+ [250,200,150,100,50,0].forEach((v,i)=>{
+  const h=v/250*120,x=10+i*68;
+  s+=`<rect x="${x}" y="${140-h}" width="54" height="${Math.max(h,3)}" rx="6" fill="${i?'var(--blue)':'var(--red)'}" opacity="${i?1-i*.12:1}"/>`+
+     `<text x="${x+27}" y="${140-h-8}" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--ink)">${v} €</text>`+
+     `<text x="${x+27}" y="162" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--mute)">${i?['Dez','Jan','Feb','Mär','Apr'][i-1]:'Start'}</text>`;
+ });
+ document.getElementById('steps').innerHTML=s;
+
+ // Navigation
+ dots.innerHTML=slides.map((sl,i)=>`<button aria-label="Folie ${i+1}: ${sl.getAttribute('aria-label')}"></button>`).join('');
+ const db=[...dots.children];
+ const cur=()=>Math.round(deck.scrollLeft/deck.clientWidth);
+ const go=i=>{i=Math.max(0,Math.min(slides.length-1,i));slides[i].scrollIntoView({inline:'start',block:'nearest'});};
+ const upd=()=>{const i=cur();db.forEach((d,j)=>d.classList.toggle('on',j===i));count.textContent=(i+1)+'/'+slides.length;};
+ db.forEach((d,i)=>d.addEventListener('click',()=>go(i)));
+ document.getElementById('prev').addEventListener('click',()=>go(cur()-1));
+ document.getElementById('next').addEventListener('click',()=>go(cur()+1));
+ document.addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur()+1);}
+  if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur()-1);}
+ });
+ deck.addEventListener('scroll',upd,{passive:true});
+ addEventListener('resize',upd);
+ upd();
+}
+</script>
+</body>
+</html>
